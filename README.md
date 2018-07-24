@@ -1,6 +1,5 @@
-# ExpressTTD
-
-## Purpose
-This project will be built using TTD approach. It will be an API to deliver many-to-many relationships from a Postgres DB.
-The goal will be to deliver JSON that contructs a task tracker resembling Trello.
-
+# TaskManager
+dependencies: express, mocha, chai, knex, pg
+Postgres: created 2 new databases, one for development and production, one for testing.
+git ignore: gitignore node
+First Steps: created instance of express, invoke express with app variable. app get /, app listen on 3000. server up with $ nodemon

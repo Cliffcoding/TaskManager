@@ -1,0 +1,26 @@
+{
+  "name": "expresstdd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joha0033/TaskManager.git"
+  },
+  "author": "joha0033",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joha0033/TaskManager/issues"
+  },
+  "homepage": "https://github.com/joha0033/TaskManager#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "express": "^4.16.3",
+    "knex": "^0.15.2",
+    "mocha": "^5.2.0"
+  }
+}
