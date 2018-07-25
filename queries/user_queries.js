@@ -2,29 +2,57 @@ const knex = require('./knex')
 
 
 module.exports = {
-    getAll: () => knex('users').select('*'),
-    getOneUser: (username) => knex('users').where('username', username).select('*'),
+    getAll: () => knex('users')
+        .select('*'),
+    getOneUser: (username) => knex('users')
+        .where('username', username)
+        .select('*'),
     getProjects: async (username) => {
+        // user q
         const findUser = knex('users')
             .where('username', username)
             .first()
-        const userFound = await findUser
+        const user = await findUser
+        // project q
         const findProjectIds = await knex('user_project')
-            .where('user_id', userFound.id)
+            .where('user_id', user.id)
             .select('project_id')
-        const projects = await Promise.all(findProjectIds
+        const findProjectsById = Promise.all(findProjectIds
             .map((project) => (knex('projects')
                 .where('id', project.project_id)
-                .first()))) //FIX THIS... await promise.all
-
-        return { ...userFound, projects }
+                .first()
+            )))
+        const projects = await findProjectsById
+        // send combination
+        return { ...user, projects }
     },
     getOneProject: async (id) => {
-        const findLists = await knex('lists').where('project_id', id)
-        const projectLists = await findLists
+        const findProject = knex('project')
+            .where('id', id)
+            .first()
+        const project = await findProject
+        
+        const findLists = await knex.select( 'id', 'title').from('lists')
+            .where('project_id', id)
+        const lists = await findLists
 
-        console.log(projectLists);
-        return projectLists
+        await Promise.all(lists
+            .map((list, index) => {
+                const findTaskByListId = knex('task')
+                    .where('list_id', list.id)
+                    .first()
+                
+                const pushTaskToList = findTaskByListId.then((t) => {
+                    list['tasks'] = []
+                    list.tasks.push(t)
+                })
+
+                return pushTaskToList
+            }))
+        
+        project['lists'] = lists
+
+        return project
     },
 }
  
