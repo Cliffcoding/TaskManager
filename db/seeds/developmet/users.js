@@ -95,85 +95,105 @@ const userProjectSeeds = [
 const lists = [
   {
     project_id: 1,
-    title: 'To do'
+    title: 'To do',
+    order: 0
   },
   {
     project_id: 1,
-    title: 'Doing'
+    title: 'Doing',
+    order: 1
   },
   {
     project_id: 1,
-    title: 'Done'
+    title: 'Done',
+    order: 2
   },
   {
     project_id: 1,
-    title: 'Stretch'
+    title: 'Stretch',
+    order: 3
   },
   {
     project_id: 2,
-    title: 'To do'
+    title: 'To do',
+    order: 0
   },
   {
     project_id: 2,
-    title: 'Doing'
+    title: 'Doing',
+    order: 1
   },
   {
     project_id: 2,
-    title: 'Done'
+    title: 'Done',
+    order: 2
   },
   {
     project_id: 2,
-    title: 'Stretch'
+    title: 'Stretch',
+    order: 3
   },
   {
     project_id: 3,
-    title: 'To do'
+    title: 'To do',
+    order: 0
   },
   {
     project_id: 3,
-    title: 'Doing'
+    title: 'Doing',
+    order: 1
   },
   {
     project_id: 3,
-    title: 'Done'
+    title: 'Done',
+    order: 2
   },
   {
     project_id: 3,
-    title: 'Stretch'
+    title: 'Stretch',
+    order: 3
   },
 ]
 
 const tasks = [
   {
     list_id: 1,
-    task: 'create fetch for user credentials at login'
+    task: 'create fetch for user credentials at login',
+    order: 0 
   },
   {
     list_id: 2,
-    task: 'create submit button for user login'
+    task: 'create submit button for user login',
+    order: 0
   },
   {
     list_id: 3,
-    task: 'create login form'
+    task: 'create login form',
+    order: 0
   },
   {
     list_id: 4,
-    task: 'burn down the offive'
+    task: 'burn down the offive',
+    order: 0
   },
   {
     list_id: 5,
-    task: 'create a time machine'
+    task: 'create a time machine',
+    order: 0
   },
   {
     list_id: 6,
-    task: 'get a watch'
+    task: 'get a watch',
+    order: 0
   },
   {
     list_id: 7,
-    task: 'miss an appointment'
+    task: 'miss an appointment',
+    order: 0
   },
   {
     list_id: 7,
-    task: 'kill steve'
+    task: 'kill steve',
+    order: 0
   }
 ]
