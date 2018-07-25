@@ -18,5 +18,10 @@ router.get('/:username', async (req, res) => {
     let projects = await queries.getProjects(username)
     return res.json(projects)
 })
+router.get('/:username/project/:id', async (req, res) =>{
+    const id = req.params.id;
+    let project = await queries.getOneProject(id)
+    return res.json(project)
+})
 
 module.exports = router
