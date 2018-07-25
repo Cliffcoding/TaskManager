@@ -1,11 +1,11 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan') 
-// morgan logger logs: GET /api/v1/users/test 200 4.507 ms - 22
-
+// morgan logger logs: GET /api/v1/users/est 200 4.507 ms - 22
+ 
 const users = require('./routes/users')
 const projects = require('./routes/projects')
-
+const userProjects = require('./routes/users_projects')
 // middleware
 app.use(morgan('dev'))
 // const user_projects NOT HERE YET
@@ -13,6 +13,8 @@ app.use(morgan('dev'))
 // routes, they need a router!
 app.use('/api/v1/users', users)
 app.use('/api/v1/projects', projects)
+// just testing below, get rid of it.
+app.use('/api/v1/userProjects', userProjects)
 
 app.get('/', (req, res) => { res.send('Welcome to your express app...') })
 
