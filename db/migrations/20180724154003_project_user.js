@@ -3,7 +3,7 @@ exports.up = (knex, Promise) => (
 		knex.schema.createTable('users', (table) => {
 			table.increments('id').primary()
 			table.string('username').notNullable().unique()
-			table.string('password').notNullable().unique()
+			table.string('password').notNullable()
 		}),
 		knex.schema.createTable('projects', (table) => {
 			table.increments('id').primary
@@ -12,7 +12,6 @@ exports.up = (knex, Promise) => (
 			table.timestamp('created_at').defaultTo(knex.fn.now())
 		}),
 		knex.schema.createTable('user_project', (table) => {
-			table.increments('id').primary();
 			table.integer('user_id').references('users.id').unsigned().onDelete('cascade');
 			table.integer('project_id').references('projects.id').unsigned().onDelete('cascade');
         }),
@@ -21,7 +20,7 @@ exports.up = (knex, Promise) => (
             table.string('title') // needs this to be unique with in its project reference
             table.integer('project_id').references('projects.id').unsigned().onDelete('cascade');
         }),
-        knex.schema.createTable('cards', (table) => {
+        knex.schema.createTable('tasks', (table) => {
             table.increments('id').primary()
             table.string('task')
             table.integer('list_id').references('lists.id').unsigned().onDelete('cascade');
@@ -31,7 +30,7 @@ exports.up = (knex, Promise) => (
 
 exports.down = (knex, Promise) => (
 	Promise.all([
-        knex.schema.dropTableIfExists('cards'),
+        knex.schema.dropTableIfExists('tasks'),
         knex.schema.dropTableIfExists('lists'),
         knex.schema.dropTableIfExists('user_project'),
 		knex.schema.dropTableIfExists('users'),
