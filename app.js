@@ -14,9 +14,10 @@ app.use('/api/v1/users', users)
 
 app.get('/', (req, res) => { res.send('Welcome to your express app...') })
 
+let server;
 process.env.NODE_ENV === 'test' ?
-app.listen(5001, ()=>{console.log('listening on port 5001')}) :
-app.listen(5000, ()=>{console.log('listening on port 5000')})
+server = app.listen(5001) :
+server = app.listen(5000)
 
 if(app.get('env') === 'development'){
     app.use((err, req, res, next) => {
@@ -31,4 +32,4 @@ app.use((err, req, res, next) => {
 	.json({'message': err.message})
 })
 
-module.exports = app
+module.exports = {app, server}
