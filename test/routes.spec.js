@@ -53,3 +53,24 @@ describe('GET one user with projects', () => {
 		})
 	})
 })
+
+describe('GET one project with lists and tasks', () => {
+	it('returns one full project. List + Tasks', (done) => {
+		chai.request(server)
+		.get('/api/v1/users/Billy/project/1')
+		.end((err, res) => {
+			console.log(res.body);
+			
+			res.body.should.have.property('id')
+			res.body.should.have.property('name')
+			res.body.should.have.property('description')
+			res.body.should.have.property('lists')
+			res.body.should.have.property('tasks')
+			res.body.lists.should.be.a('array')
+			res.body.tasks.should.be.a('array')
+			res.should.be.json
+			res.should.have.status(200);
+			done()
+		})
+	})
+})
