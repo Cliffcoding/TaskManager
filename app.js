@@ -4,21 +4,19 @@ const morgan = require('morgan')
 // morgan logger logs: GET /api/v1/users/est 200 4.507 ms - 22
  
 const users = require('./routes/users')
-const projects = require('./routes/projects')
-const userProjects = require('./routes/users_projects')
+
 // middleware
-app.use(morgan('dev'))
+process.env.NODE_ENV === 'development' ? app.use(morgan('dev')) : null
 // const user_projects NOT HERE YET
 
 // routes, they need a router!
 app.use('/api/v1/users', users)
-app.use('/api/v1/projects', projects)
-// just testing below, get rid of it.
-app.use('/api/v1/userProjects', userProjects)
 
 app.get('/', (req, res) => { res.send('Welcome to your express app...') })
 
-app.listen(3000, ()=>{console.log('listening on port 3000')})
+process.env.NODE_ENV === 'test' ?
+app.listen(5001, ()=>{console.log('listening on port 5001')}) :
+app.listen(5000, ()=>{console.log('listening on port 5000')})
 
 if(app.get('env') === 'development'){
     app.use((err, req, res, next) => {
