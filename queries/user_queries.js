@@ -1,5 +1,7 @@
 const knex = require('./knex')
 
+// ADD ERROR HANDLING - https://codeburst.io/node-express-async-code-and-error-handling-121b1f0e44ba
+// "simplify" queries - https://github.com/tgriesser/knex/issues/882 || https://stackoverflow.com/questions/47503627/create-a-nested-return-model-with-knex-js
 
 module.exports = {
     getAll: () => {
@@ -12,7 +14,6 @@ module.exports = {
             .select('*')
     },
     getProjects: async (username) => {
-        
         const findUser = knex('users')
             .where('username', username)
             .first()
@@ -32,6 +33,13 @@ module.exports = {
         return { ...user, projects }
     },
     getOneProject: async (id) => {
+
+
+
+
+
+
+
         const findProject = knex('project')
             .where('id', id)
             .first()
