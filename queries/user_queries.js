@@ -2,18 +2,22 @@ const knex = require('./knex')
 
 
 module.exports = {
-    getAll: () => knex('users')
-        .select('*'),
-    getOneUser: (username) => knex('users')
-        .where('username', username)
-        .select('*'),
+    getAll: () => {
+        return knex('users')
+            .select('*')
+    },
+    getOneUser: (username) => {
+        return knex('users')
+            .where('username', username)
+            .select('*')
+    },
     getProjects: async (username) => {
-        // user q
+        
         const findUser = knex('users')
             .where('username', username)
             .first()
         const user = await findUser
-        // project q
+        
         const findProjectIds = await knex('user_project')
             .where('user_id', user.id)
             .select('project_id')
@@ -22,8 +26,9 @@ module.exports = {
                 .where('id', project.project_id)
                 .first()
             )))
+
         const projects = await findProjectsById
-        // send combination
+
         return { ...user, projects }
     },
     getOneProject: async (id) => {
@@ -32,7 +37,8 @@ module.exports = {
             .first()
         const project = await findProject
         
-        const findLists = await knex.select( 'id', 'title').from('lists')
+        const findLists = knex.select( 'id', 'title')
+            .from('lists')
             .where('project_id', id)
         const lists = await findLists
 
@@ -53,6 +59,6 @@ module.exports = {
         project['lists'] = lists
 
         return project
-    },
+    }
 }
  
