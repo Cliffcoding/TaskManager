@@ -1,14 +1,14 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('users').del()
-    .then(() => knex('projects').del())
+  return knex('user').del()
+    .then(() => knex('project').del())
       .then(() => knex('user_project').del())
-        .then(() => knex('users').insert(userSeeds))
-          .then(() => knex('projects').insert(projectSeeds))
+        .then(() => knex('user').insert(userSeeds))
+          .then(() => knex('project').insert(projectSeeds))
             .then(() => knex('user_project').insert(userProjectSeeds))
-              .then(() => knex('lists').insert(lists))
-                .then(() => knex('tasks').insert(tasks))
+              .then(() => knex('list').insert(lists))
+                .then(() => knex('task').insert(tasks))
 };
 
 const userSeeds = [
