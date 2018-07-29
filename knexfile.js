@@ -1,33 +1,34 @@
 // Update with your config settings.
 module.exports = {
 	test: {
-		client: 	'pg',
-		connection: 	'postgres://localhost/TaskTracker',
+		client: 'pg',
+		connection: 'postgres://localhost/TaskTracker',
 		migrations: {
-			directory: __dirname + '/db/migrations'
+			directory: `${__dirname}/db/migrations`,
 		},
 	  	seeds: {
-	  		directory: __dirname + '/db/seeds/test'
-	  	}	
+	  		directory: `${__dirname}/db/seeds/test`,
+	  	},
   	},
   	development: {
-    		client: 	'pg',
-    		connection: 	'postgres://localhost/TaskTracker',
-    		migrations: {
-			directory: __dirname + '/db/migrations'
-		},seeds:{
-			directory: __dirname + '/db/seeds/developmet'
-		}
-   
+    	client: 'pg',
+    	connection: 'postgres://localhost/TaskTracker',
+    	migrations: {
+			directory: `${__dirname}/db/migrations`,
+		},
+		seeds: {
+			directory: `${__dirname}/db/seeds/developmet`,
+		},
+
   	},
-  //	production: {
-    //		client: 	'postgresql',
-    //		connection: process.ENV.DATABASE_URL,
+	//	production: {
+	//		client: 	'postgresql',
+	//		connection: process.ENV.DATABASE_URL,
 //		migrations: {
 //			directory: __dirname + '/db/migrations',
 //		},
 //		seeds: {
 //			directory: __dirname + '/db/seeds/productions'
 //		}
-  //	}
+	//	}
 };
